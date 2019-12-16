@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.dao.EmpDao">
+<!--    <resultMap id="my1" type="Emp">-->
+<!--        <id column="sid" property="id"></id>-->
+<!--        <result column="sname" property="name"></result>-->
+<!--        <result column="ssalary" property="salary"></result>-->
+<!--        <result column="sage" property="age"></result>-->
+<!--        <result column="sbir" property="bir"></result>-->
+<!--       <association property="dept" javaType="Dept">-->
+<!--            <id column="did" property="id"></id>-->
+<!--            <result column="dname" property="name"></result>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+<!--&lt;!&ndash;    查询所有&ndash;&gt;-->
+<!--    <select id="selectAll" resultMap="my1">-->
+<!--       select s.id as sid,s.name as sname,s.salary as ssalary,s.age as sage,-->
+<!--        s.bir as sbir,d.id as did,d.name as dname-->
+<!--        from Emp s left join dept d-->
+<!--        on s.deptid=d.id-->
+<!--    </select>-->
+<!--    添加-->
+    <insert id="addEmployee">
+        insert into emp values (uuid(),#{name},#{password},#{truename},#{phone},#{empcreatedate},#{deptid},#{paytype},#{workstate},#{upload})
+    </insert>
+<!--    删除-->
+    <delete id="deleteOne" parameterType="com.wang.entity.Emp">
+        delete from emp where id=#{id}
+    </delete>
+    <!--    删除-->
+    <delete id="deleteByid" parameterType="com.wang.entity.Emp">
+        delete from emp where id=#{id}
+    </delete>
+<!--    根据部门id查询一个-->
+<!--    <select id="selectAllById" resultMap="my1">-->
+<!--        select s.id as sid,s.name as sname,s.salary as ssalary,s.age as sage,-->
+<!--        s.bir as sbir,d.id as did,d.name as dname-->
+<!--        from Emp s left join dept d-->
+<!--        on s.deptid=d.id-->
+<!--        where d.id=#{id}-->
+<!--    </select>-->
+    <!--    根据部门id查询一个  resultMap="my1"-->
+    <select id="selectOneById" resultType="Emp">
+--         select s.id as sid,s.name as sname,s.salary as ssalary,s.age as sage,
+--         s.bir as sbir,d.id as did,d.name as dname
+--         from Emp s left join dept d
+--         on s.deptid=d.id
+--         where s.id=#{id}
+    select * from emp where name =#{name}
+    </select>
+<!--    更新-->
+    <update id="editOne" parameterType="Emp">
+       update emp set name=#{name},truename=#{truename},password=#{password},phone=#{phone},deptid=#{deptid},paytype=#{paytype},upload=#{upload},workstate=#{workstate},empcreatedate=#{empcreatedate} where id=#{id}
+    </update>
+    <!--    分页查询-->
+<!--    <select id="selectByPage" resultMap="my1">-->
+<!--        select s.id as sid,s.name as sname,s.salary as ssalary,s.age as sage,-->
+<!--        s.bir as sbir,d.id as did,d.name as dname-->
+<!--        from Emp s left join dept d-->
+<!--        on s.deptid=d.id-->
+<!--        limit #{start}, #{size}-->
+<!--        where s.deptid=#{deptid}-->
+<!--    </select>-->
+</mapper>

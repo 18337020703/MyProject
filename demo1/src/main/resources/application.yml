@@ -1,0 +1,33 @@
+server:
+  port: 8989
+  context-path: /demo1 #配置应用名
+  jsp-servlet:
+    init-parameters:
+      development: true   #jsp开发者模式部署，热部署
+spring:
+  mvc:
+    view:
+      prefix: / # /代表访问webapp项目中的页面
+      suffix: .jsp
+  http:
+    encoding:
+      force-request: true
+      charset: UTF-8
+      enabled: true
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dept
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations: classpath:com/wang/mapper/*.xml #指定mapper文件位置
+  type-aliases-package: com.wang.entity #给实体类起别名
+
+
+
+

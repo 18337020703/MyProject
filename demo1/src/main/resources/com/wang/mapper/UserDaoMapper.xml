@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.dao.UserDao">
+<!--    根据name查询-->
+    <select id="selectAll" resultType="User">
+        select * from user
+    </select>
+    <select id="selectOneByName" resultType="Emp">
+        select * from emp where name=#{name}
+    </select>
+<!--    <insert id="addUser">-->
+<!--        insert into user values(#{id},#{name},#{password},#{truename},#{phone},#{empcreatedate},#{deptid},#{paytype},#{workstate})-->
+<!--    </insert>-->
+    <update id="addUser">
+        update emp set workstate = 4 where id=#{id}
+    </update>
+    <select id="findUser" resultType="User" parameterType="User">
+         select * from emp where workstate = 4
+             <if test="name!=null">
+                 and name like '%${name}%'
+             </if>
+
+    </select>
+    <update id="deleteUser">
+        update emp set workstate = 3 where id = #{id}
+    </update>
+    <update id="editPassword">
+         update emp set password = #{password} where id = #{id}
+    </update>
+</mapper>

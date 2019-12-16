@@ -1,0 +1,234 @@
+.page-select input{
+    display: block;
+    width: 180px;
+    height: 30px;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+}
+.page-select button{
+    display: block;
+    width: 120px;
+    height: 30px;
+    font-family: "'微软雅黑','Helvetica Neue',Helvetica,Arial,sans-serif";
+    font-size: 13px!important;
+    height: 30px;
+    line-height: 18px!important;
+    padding: 3px 18px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: normal;
+    border-radius: 3px;
+    margin: 0 8px 0 3px;
+    border: 1px solid #0bc5de;
+    color: #ffffff;
+    background-color: #0bc5de;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.select{
+    position: relative;
+}
+.add{
+    position: absolute;
+    left: 350px;
+    top:6px;
+    width: 93px;
+    height: 37px;
+    background-color:  #009688;
+    border: #009688 1px solid;
+    color:white;
+    border-radius: 5%;
+}
+.page-select{
+    display: block;
+}
+#contes {
+    /* 弹框的页面*/
+    width: 500px; /*宽度*/
+    height: 600px; /*高度*/
+    background: #fff; /*背景色*/
+    display: none; /*隐藏*/
+    z-index: 99989; /*覆盖*/
+    position: absolute;
+    /*top: 50px;*/
+    /*left: 400px; !* 定位*!*/
+    border-radius: 6%;
+    background-color: white;
+}
+#contes .add-head{
+    display: block;
+    font-family: '微软雅黑','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #2b2b2b;
+    margin-left: 20px;
+    margin-top: 12px;
+    font-size: 18px;
+}
+#edit {
+    /* 弹框的页面*/
+    width: 500px; /*宽度*/
+    height: 600px; /*高度*/
+    background: #fff; /*背景色*/
+    display: none; /*隐藏*/
+    z-index: 99989; /*覆盖*/
+    position: absolute;
+    /*top: 50px;*/
+    /*left: 400px; !* 定位*!*/
+    border-radius: 6%;
+    background-color: white;
+}
+#edit .add-head{
+    display: block;
+    font-family: '微软雅黑','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #2b2b2b;
+    margin-left: 20px;
+    margin-top: 12px;
+    font-size: 18px;
+}
+#all_light {
+    /*整个弹窗的页面*/
+    overflow-x: hidden;
+    opacity: 0.3; /*透明度*/
+    width: 1150px; /*宽度*/
+    height: 700px; /*高度，不能百分百*/
+    background: #000; /*背景色*/
+    position: absolute;
+    top: 0;
+    left: 0; /*定位*/
+    display: none; /*隐藏*/
+    z-index: 9899; /*覆盖*/
+}
+.input-content {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-content input {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #dad9d6;
+    background: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.input-content span{
+    display: block;
+    float: left;
+    margin-left: 80px;
+    margin-top: 15px;
+    text-align: right;
+    width: 80px;
+    color: #707472;
+    text-align: right;
+
+}
+
+.code span {
+    font-size: 12px;
+    color: #707472;
+}
+
+.code input {
+    width: 50px;
+    height: 20px;
+    border: 1px solid #dad9d6;
+    background: #ffffff;
+    margin-left: 0px;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+}
+
+.enter-btn {
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    background: #0bc5de;
+    line-height: 40px;
+    text-align: center;
+    border: 0px;
+}
+
+.enter-btn:hover {
+    cursor: pointer;
+    background: #1db5c9;
+}
+
+.foor div:hover {
+    cursor: pointer;
+    color: #484847;
+    font-weight: 600;
+}
+.check input{
+    width: 15px;
+}
+#pay{
+    width: 350px; /*宽度*/
+    height: 200px; /*高度*/
+    background: #fff; /*背景色*/
+    display: none; /*隐藏*/
+    z-index: 99999; /*覆盖*/
+    position: absolute;
+    top: 0px;
+    left: 0px; /* 定位*/
+    border-radius: 5%;
+    background-color: white;
+}
+#alll_light {
+    /*整个弹窗的页面*/
+    opacity: 0.5; /*透明度*/
+    width: 1500px; /*宽度*/
+    height: 2300px; /*高度，不能百分百*/
+    background: #000; /*背景色*/
+    position: absolute;
+    top: 0;
+    left: 0; /*定位*/
+    display: none; /*隐藏*/
+    z-index: 99998; /*覆盖*/
+}
+#pay span{
+    margin-top: 25px;
+    padding-top: 25px;
+    margin-left: 55px;
+    font-family: '微软雅黑', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #2b2b2b;
+}
+#pay input{
+    margin-top: 30px;
+    width: 200px;
+    height: 40px;
+}
+#pay button{
+    width: 86px;
+    height: 40px;
+    background-color: #0bc5de;
+    color: white;
+    margin-top: 29px;
+    margin-left: 120px;
+    border-radius: 9%;
+    border: #0bc5de solid 1px;
+}
+.layui-table-cell{
+    font-size:10px;
+    height: 30px;
+}
+.layui-btn-xs{
+    background-color: #ffffff;
+    color: #6d6d6d;
+    width: 50px;
+    height: 28px;
+    border: #cccccc 1px solid;
+    font-family: '微软雅黑','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.layui-btn-danger{
+    background-color:#f56c6c;
+    border: #f56c6c;
+    color: #eeeeee;
+    font-family: '微软雅黑','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.layui-btn-normal{
+    background-color: #24c1b3;
+}

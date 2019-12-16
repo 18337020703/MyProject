@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wang.dao.DeptDao">
+    <select id="selectAll" resultType="Emp" parameterType="Emp">
+        select * from emp
+        <where>
+           <if test="name!=null">
+               name like '%${name}%'
+            </if>
+        </where>
+    </select>
+
+<!--    分页查询-->
+<!--    <select id="findAllUserLimit" resultType="Emp">-->
+<!--        select * from emp-->
+<!--        <if test= ' tiaojian!="" or tiaojian!=null '>-->
+<!--            where name like '%${tiaojian}%'-->
+<!--        </if>-->
+<!--        limit #{page},#{limit}-->
+<!--    </select>-->
+
+    <insert id="addClient" parameterType="Dept">
+        insert into dept values(uuid(),#{name},#{phone},#{type},#{createdate},#{empid},#{notes})
+    </insert>
+
+    <update id="editClient" parameterType="Dept">
+        update dept set name=#{name},phone=#{phone},type=#{type},createdate=#{createdate},empid=#{empid},notes=#{notes} where id=#{id}
+    </update>
+
+    <!--    删除-->
+    <delete id="deleteOne">
+        delete from dept where id=#{id}
+    </delete>
+
+    <!--    条件查询顾客 -->
+    <select id="findClient" resultType="Dept" parameterType="Dept">
+        select * from dept
+        <if test="name!=null">
+        where name like '%${name}%'
+        </if>
+    </select>
+<!--    查找不是管理员的员工-->
+    <select id="findEmp" resultType="Emp">
+        Select * from emp where workstate=3
+        <if test="name!=null">
+            and name like '%${name}%'
+        </if>
+    </select>
+    <insert id="addIncome" parameterType="Incomes">
+      insert into incomes values (#{id},#{client},#{money},#{incomemethod},#{incometype},
+       #{incometime},#{submittime},#{approvetime},#{empid},#{createman},#{modifier},#{notes},#{state},#{path})
+    </insert>
+
+    <!--所有未审批的-->
+    <select id="findAllIncomesRefuse" resultType="Incomes">
+        select * from incomes where state=1
+        <if test="empid!=null and empid!=''">
+            and empid=#{empid}
+        </if>
+        <if test="client!=null and client!=''">
+            and client=#{client}
+        </if>
+        <if test="state==1">
+            and incometime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==2">
+            and submittime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==3">
+            and approvetime between #{submittime} and #{approvetime}
+        </if>
+    </select>
+    <!--所有同意的-->
+    <select id="findAllIncomesApprove" resultType="Incomes" parameterType="Incomes">
+        select * from incomes where state=2
+
+        <if test="empid!=null and empid!=''">
+            and empid=#{empid}
+        </if>
+        <if test="client!=null and client!=''">
+            and client=#{client}
+        </if>
+        <if test="state==1">
+            and incometime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==2">
+            and submittime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==3">
+            and approvetime between #{submittime} and #{approvetime}
+        </if>
+
+    </select>
+<!--所有未审批的-->
+    <select id="findIncomes" resultType="Incomes">
+        select * from incomes where state = 1 and createman = #{createman}
+        <if test="empid!=null and empid!=''">
+            and empid=#{empid}
+        </if>
+        <if test="client!=null and client!=''">
+            and client=#{client}
+        </if>
+        <if test="state==1">
+            and incometime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==2">
+            and submittime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==3">
+            and approvetime between #{submittime} and #{approvetime}
+        </if>
+    </select>
+<!--所有同意的-->
+    <select id="findIncomesApprove" resultType="Incomes" parameterType="Incomes">
+        select * from incomes where state=2 and createman = #{createman}
+
+            <if test="empid!=null and empid!=''">
+                and empid=#{empid}
+            </if>
+            <if test="client!=null and client!=''">
+               and client=#{client}
+            </if>
+            <if test="state==1">
+               and incometime between #{submittime} and #{approvetime}
+            </if>
+            <if test="state==2">
+               and submittime between #{submittime} and #{approvetime}
+            </if>
+            <if test="state==3">
+               and approvetime between #{submittime} and #{approvetime}
+            </if>
+
+    </select>
+<!--所有拒绝的-->
+    <select id="findIncomesRefuse" resultType="Incomes">
+        select * from incomes where state = 3 and createman = #{createman}
+        <if test="empid!=null and empid!=''">
+            and empid=#{empid}
+        </if>
+        <if test="client!=null and client!=''">
+            and client=#{client}
+        </if>
+        <if test="state==1">
+            and incometime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==2">
+            and submittime between #{submittime} and #{approvetime}
+        </if>
+        <if test="state==3">
+            and approvetime between #{submittime} and #{approvetime}
+        </if>
+    </select>
+
+<!--    同意审批-->
+    <update id="editIncomes">
+        update incomes set state =2 where id = #{id}
+    </update>
+<!--拒绝审批-->
+    <update id="refuseIncomes" parameterType="Incomes">
+        update incomes set state =3 ,notes=#{notes} where id = #{id}
+    </update>
+
+<!--    更改路径-->
+<update id="changeIncomesPath">
+            update incomes set path =#{path} where id = #{id}
+
+</update>
+<!--    查询总收入-->
+    <select id="sum" resultType="Double">
+        select sum(money) from incomes where state = 2 and incometype = '收入'
+    </select>
+<!--查询总支出-->
+    <select id="pay" resultType="Double">
+        select sum(money) from incomes where state = 2 and incometype = '支出'
+    </select>
+
+</mapper>
